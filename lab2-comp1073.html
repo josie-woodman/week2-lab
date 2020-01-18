@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+    <title>Lab 2 | COMP1073 Client-Side JavaScript</title>
+    <style>
+        /*Put CSS Styling here for bonus marks*/
+    </style>
+</head>
+
+<body> 
+ <div class="container">
+    <h1>Airports</h1>
+        <table class="table">
+          <thead>
+            <tr>
+              <th> scope="col">Code</th>
+              <th> scope="col">Airport</th>
+            </tr>
+           <tbody>
+              <tr>Beijing Capital International, https://goo.gl/maps/iPe5fAqzq8C2 PEK</tr>
+              <tr>John F Kennedy International, https://goo.gl/maps/JWwABmA3MBS2 JFK</tr>
+              <tr>Lester B. Pearson International, https://goo.gl/maps/Ypu1dJLsnQu YYZ</tr>
+              <tr>London Heathrow, https://goo.gl/maps/TFx8SrATdYr LHR</tr>
+              <tr>Tokyo Haneda International, https://goo.gl/maps/5UxH2TxbRtT2 HND</tr>
+           </tbody>
+          </thead>
+        </table>
+  </div>
+</body>
+<script>
+    var airportList = document.querySelector('body thead');
+    airportList.innerHTML = '';
+    var airports = ['Beijing Capital International, https://goo.gl/maps/iPe5fAqzq8C2 PEK',
+                    'John F Kennedy International, https://goo.gl/maps/JWwABmA3MBS2 JFK',
+                    'Lester B. Pearson International, https://goo.gl/maps/Ypu1dJLsnQu YYZ',
+                    'London Heathrow, https://goo.gl/maps/TFx8SrATdYr LHR',
+                    'Tokyo Haneda International, https://goo.gl/maps/5UxH2TxbRtT2 HND'];
+
+    for(var i = 0; i < airports.length; i++) {
+        var input = airports[i];
+        // Put your code here inside this loop
+
+      // Find comma index
+      let commmaIndex = input.indexOf(',');
+      
+      //Getting airport name
+      let airportName = input.slice(0, commaIndex) //The zero means "1" in this case
+
+      //Getting airport code
+      let airportCodeIndex = input.slice(-3) //This means you're grabbing the third "part" of the "sentence"
+
+      //Getting airport URL
+      let airportURL = input.slice(commaIndex + 1, -3).trim()
+
+      //create an anchor link
+      let hyperlink = `<a href= "${airportURL}">${airportCodeIndex} - ${airportName}</a>`;
+      console.log(hyperlink)
+
+        var result = hyperlink;
+        var listItem = document.createElement('tr');
+        listItem.innerHTML = result;
+        airportList.appendChild(listItem);
+    }
+</script>
+</html>
